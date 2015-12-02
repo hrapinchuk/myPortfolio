@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Heather Rapinchuk</title>
+    <link href='https://fonts.googleapis.com/css?family=Julius+Sans+One' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='portfolio/stylesheet1.css' rel='stylesheet'>
+    <link href='portfolio/stylesheet2.css' rel='stylesheet'>
+    <script src='portfolio/tracking.js'></script>
+</head>
+<body>
+    <div class="header">
+        <ul>
+            <li>Menu
+                <ul>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio.html#about">
+                        <li>About Me</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/dicegame.html">
+                        <li>Dice Game</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/webpage.html">
+                        <li>Web Page</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/morsetranslator.html">
+                        <li>Morse Translator</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/mapapp2.html">
+                        <li>Map App</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio.html#contact">
+                        <li>Contact</li>
+                    </a>
+                </ul>
+            </li>
+        </ul>
+        <h6>Heather Rapinchuk</h6>
+    </div>
+    <div class="content" style="padding-top: 90px;">
+        <img src="portfolio/record.svg">
+        <p>I'm a student of computer science and the world around me.  Scroll on to learn more about me.</p>
+    </div>
+    <div id="about" class="content" style="text-align: left; background-color: #aeeaae;">
+        <h2 style="font-family: 'Lobster', cursive; text-align: center;">About Me</h2>
+        <p><b>Education:</b></p> 
+        <p>University of California, Los Angeles | B.A. International Development, Minor in Spanish</p>
+        <div class="line"></div>
+        <p><b>Work Experience:</b></p>
+        <p>techShop | Computer Repair Technician Intern & Customer Technician</p>
+        <p>Livingston Community Health | Community Relations Coordinator & Health IT Training Program Communication Coordinator</p>
+        <div class="line"></div>
+        <p><b>Languages:</b></p>
+        <p>Javascript, HTML, CSS, Python, C++</p>
+        <div class="line"></div>
+        <p><b>Other Experience:</b></p>
+        <p>Creating and managing Wordpress websites</p>
+        <p>Some experience with graphic design software, including Bryce, Adobe Illustrator, and Microsoft Publisher</p>
+    </div>
+    <div class="floatingBox">
+        <a href="http://phillipsd.net/~hrapinchuk/portfolio/dicegame.html">
+            <img src="portfolio/dicegameImg.png" />
+        </a>
+        <p>This page uses html, css, and javascript to create an animated dice-rolling game.</p>
+    </div>
+    <div class="floatingBox">
+        <a href="http://phillipsd.net/~hrapinchuk/portfolio/webpage.html">
+            <img src="portfolio/webpageImg.png" style="background-color: #a54dff;" />
+        </a>
+        <p>Here is an open webpage template that implements a d3.js design element API.</p>
+    </div>
+    <div class="floatingBox">
+        <a href="http://phillipsd.net/~hrapinchuk/portfolio/morsetranslator.html">
+            <img src="portfolio/morsetranslatorImg.png" style="background-color: #aeeaae;"/>
+        </a>
+        <p>This app translates written English into both visual and audio morse code.</p>
+    </div>
+    <div class="floatingBox">
+        <a href="http://phillipsd.net/~hrapinchuk/portfolio/mapapp2.html">
+            <img src="portfolio/mapapp2Img.png" />
+        </a>
+        <p>This app reads coordinates from files and then maps their locations using a Google API.</p>
+    </div>
+    <div id="contact" class="content">
+        <a href="mailto:hrapinchuk@gmail.com">Contact</a>
+        <div class="line"></div>
+    </div>
+</body>
+</html>
+
