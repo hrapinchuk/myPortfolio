@@ -26,7 +26,7 @@
                     <a href="http://phillipsd.net/~hrapinchuk/portfolio/morsetranslator.html">
                         <li>Morse Translator</li>
                     </a>
-                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/mapapp2.html">
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/mapapp.html">
                         <li>Map App</li>
                     </a>
                     <a href="http://phillipsd.net/~hrapinchuk/portfolio.html#contact">
@@ -38,7 +38,7 @@
         <h6>Heather Rapinchuk</h6>
     </div>
     <div class="content" style="padding-top: 90px;">
-        <img src="portfolio/record.svg">
+        <img style="width:40%; height:40%;" src="https://cdn0.iconfinder.com/data/icons/very-basic-android-l-lollipop-icon-pack/24/globe-512.png" />
         <p>I'm a student of computer science and the world around me.  Scroll on to learn more about me.</p>
     </div>
     <div id="about" class="content" style="text-align: left; background-color: #aeeaae;">
@@ -76,10 +76,10 @@
         <p>This app translates written English into both visual and audio morse code.</p>
     </div>
     <div class="floatingBox">
-        <a href="http://phillipsd.net/~hrapinchuk/portfolio/mapapp2.html">
-            <img src="portfolio/mapapp2Img.png" />
+        <a href="http://phillipsd.net/~hrapinchuk/portfolio/mapapp.html">
+            <img src="portfolio/mapappImg.png" />
         </a>
-        <p>This app reads coordinates from files and then maps their locations using a Google API.</p>
+        <p>This simple app uses a Google Maps API to map locations by their lat/long coordinates.</p>
     </div>
     <div id="contact" class="content">
         <a href="mailto:hrapinchuk@gmail.com">Contact</a>
@@ -87,4 +87,3 @@
     </div>
 </body>
 </html>
-
