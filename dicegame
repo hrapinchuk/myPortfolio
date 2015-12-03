@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>Dice Game</title>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='stylesheet1.css' rel='stylesheet'>
+    <script src="tracking.js"></script>
+    <style>
+        body {
+            margin: 100px 0px 0px 0px;
+            text-align: center;
+            color: white;
+            background-color: #47d147;
+            font-family: impact;
+        }
+        img {
+            margin: 20px;
+            float: center;
+        }
+        .rotate {
+            -webkit-animation: spin .5s linear;
+            -moz-animation: spin .5s linear;
+            animation: spin .5s linear;
+        }
+        @-moz-keyframes spin { 
+            100% { -moz-transform: rotate(360deg); } 
+        }
+        @-webkit-keyframes spin { 
+            100% { -webkit-transform: rotate(360deg); } 
+        }
+        @keyframes spin { 
+            100% { transform: rotate(360deg); } 
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <ul>
+            <li>Menu
+                <ul>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio.html">
+                        <li>Home</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/dicegame.html">
+                        <li>Dice Game</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/webpage.html">
+                        <li>Web Page</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/morsetranslator.html">
+                        <li>Morse Translator</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/mapapp.html">
+                        <li>Map App</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio.html#contact">
+                        <li>Contact</li>
+                    </a>
+                </ul>
+            </li>
+        </ul>
+        <h6>Heather Rapinchuk</h6>
+    </div>
+    <h1 style="font-size: 400%">DICE GAME</h1>
+    <h2>Click to roll!</h2>
+    <button id="button">Roll</button>
+    <br/>
+    <img src="dice1.png" alt="dice" id="image1" class="rotate" />
+    <img src="dice1.png" alt="dice" id="image2" class="rotate" />
+    <br/>
+    <p id="message"></p>
+
+<script>
+button = document.getElementById("button");
+image1 = document.getElementById("image1");
+image2 = document.getElementById("image2");
+
+// function to calculate and output roll to user
+button.onclick = function () {
+    var roll1 = (1 + Math.floor(6 * Math.random()));
+    var roll2 = (1 + Math.floor(6 * Math.random()));
+    image1.src = ("dice" + roll1 + ".png");
+    image2.src = ("dice" + roll2 + ".png");
+    var rollTotal = parseInt(roll1 + roll2);
+    document.getElementById("message").innerHTML = ("You rolled a " + rollTotal + "!");
+}
+
+// function for dice roll animation
+button.addEventListener("click", function(x) {
+    x.preventDefault;
+    image1.classList.remove("rotate");
+    image2.classList.remove("rotate");
+    image1.offsetWidth = image1.offsetWidth;
+    image2.offsetWidth = image2.offsetWidth;
+    image1.classList.add("rotate");
+    image2.classList.add("rotate");
+}, false);
+</script>
+</body>
+</html>
