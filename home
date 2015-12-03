@@ -8,14 +8,16 @@
     <link href='portfolio/stylesheet1.css' rel='stylesheet'>
     <link href='portfolio/stylesheet2.css' rel='stylesheet'>
     <script src='portfolio/tracking.js'></script>
+    <script src="http://code.jquery.com/jquery-1.6.4.min.js"></script>
+    <script src='portfolio/hideeffect.js'></script>
 </head>
 <body>
     <div class="header">
         <ul>
             <li>Menu
                 <ul>
-                    <a href="http://phillipsd.net/~hrapinchuk/portfolio.html#about">
-                        <li>About Me</li>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio.html">
+                        <li>Home</li>
                     </a>
                     <a href="http://phillipsd.net/~hrapinchuk/portfolio/dicegame.html">
                         <li>Dice Game</li>
@@ -37,14 +39,19 @@
         </ul>
         <h6>Heather Rapinchuk</h6>
     </div>
-    <div class="content" style="padding-top: 90px;">
-        <img style="width:40%; height:40%;" src="https://cdn0.iconfinder.com/data/icons/very-basic-android-l-lollipop-icon-pack/24/globe-512.png" />
-        <p>I'm a student of computer science and the world around me.  Scroll on to learn more about me.</p>
+    <div id="intro" class="content" style="padding-top: 90px;">
+        <img src="portfolio/record.svg">
+        <p>I'm a student of computer science and the world around me.</p>
+        <button>Click to Learn More</button>
     </div>
     <div id="about" class="content" style="text-align: left; background-color: #aeeaae;">
         <h2 style="font-family: 'Lobster', cursive; text-align: center;">About Me</h2>
         <p><b>Education:</b></p> 
+        <p>Modesto Junior College | Currently Enrolled in Computer Science Program</p>
         <p>University of California, Los Angeles | B.A. International Development, Minor in Spanish</p>
+        <div class="line"></div>
+        <p><b>Honors:</b></p>
+        <p>Graduated Magna Cum Laude</p>
         <div class="line"></div>
         <p><b>Work Experience:</b></p>
         <p>techShop | Computer Repair Technician Intern & Customer Technician</p>
@@ -79,9 +86,9 @@
         <a href="http://phillipsd.net/~hrapinchuk/portfolio/mapapp.html">
             <img src="portfolio/mapappImg.png" />
         </a>
-        <p>This simple app uses a Google Maps API to map locations by their lat/long coordinates.</p>
+        <p>This app reads coordinates from files and then maps their locations using a Google API.</p>
     </div>
-    <div id="contact" class="content">
+    <div id="contact" class="content" style="font-family: 'Lobster', cursive; font-size: 20px;">
         <a href="mailto:hrapinchuk@gmail.com">Contact</a>
         <div class="line"></div>
     </div>
