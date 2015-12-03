@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Morse Code Translator</title>
+    <link href='https://fonts.googleapis.com/css?family=Sarpanch:400,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='stylesheet1.css' rel='stylesheet'>
+    <script src="tracking.js"></script>
+    <style>
+      body {
+        margin: 0px;
+        background-image: url('http://s3.amazonaws.com/percolate-media-image-assets/28036633');
+      }
+      .content {
+        padding: 40px;
+        text-align: center;
+        font-size: 30px;
+        font-family: 'Sarpanch', sans-serif;
+      }
+      button {
+        margin: 20px;
+      }
+      .textBox {
+        -moz-appearance: textfield-multiline;
+        -webkit-appearance: textarea;
+        font-size: 25px;
+        background-color: white;
+        opacity: 0.8;
+        display: inline-block;
+        height: 300px;
+        width: 700px;
+        overflow: auto;
+        padding: 2px;
+        float: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+        <ul>
+            <li>Menu
+                <ul>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio.html">
+                        <li>Home</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/dicegame.html">
+                        <li>Dice Game</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/webpage.html">
+                        <li>Web Page</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/morsetranslator.html">
+                        <li>Morse Translator</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/mapapp.html">
+                        <li>Map App</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio.html#contact">
+                        <li>Contact</li>
+                    </a>
+                </ul>
+            </li>
+        </ul>
+        <h6>Heather Rapinchuk</h6>
+    </div>
+    <div class="content">
+        <h2 style="color: white;">Translate Text into Morse Code</h2>
+        <input type="text" style="width: 700px;" id="userText">
+        <br />
+        <button onclick="trans()">Translate</button>
+        <br />
+        <div class="textBox" id="translation"></div>
+        <br />
+        <audio id="container" controls="" autoplay=""></audio>
+    </div>
+
+    <script>
+		var engToMorse = {
+			"a": ". _",
+			"b": "_ . . .",
+			"c": "_ . _ .",
+			"d": "_ . .",
+			"e": ".",
+			"f": ". . _ .",
+			"g": "_ _ .",
+			"h": ". . . .",
+			"i": ". .",
+			"j": ". _ _ _",
+			"k": "_ . _",
+			"l": ". _ . .",
+			"m": "_ _",
+			"n": "_ .",
+			"o": "_ _ _",
+			"p": ". _ _ .",
+			"q": "_ _ . _",
+			"r": ". _ .",
+			"s": ". . .",
+			"t": "_",
+			"u": ". . _",
+			"v": ". . . _",
+			"w": ". _ _",
+			"x": "_ . . _",
+			"y": "_ . _ _",
+			"z": "_ _ . .",
+			"1": ". _ _ _ _",
+			"2": ". . _ _ _",
+			"3": ". . . _ _",
+			"4": ". . . . _",
+			"5": ". . . . .",
+			"6": "_ . . . .",
+			"7": "_ _ . . .",
+			"8": "_ _ _ . .",
+			"9": "_ _ _ _ .",
+			"0": "_ _ _ _ _",
+			" ": "&nbsp"
+		};
+
+		var charToSound = {
+			"a": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20A%20Alpha.mp3',
+			"b": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20B%20Bravo.mp3',
+			"c": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20C%20Charlie.mp3',
+			"d": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20D%20Delta.mp3',
+			"e": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20E%20Echo.mp3',
+			"f": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20F%20Foxtrot.mp3',
+			"g": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20G%20Golf.mp3',
+			"h": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20H%20Hotel.mp3',
+			"i": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20I%20India.mp3',
+			"j": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20J%20Juliet.mp3',
+			"k": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20K%20Kilo.mp3',
+			"l": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20L%20Lima.mp3',
+			"m": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20M%20Mike.mp3',
+			"n": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20N%20November.mp3',
+			"o": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20O%20Oscar.mp3',
+			"p": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20P%20Papa.mp3',
+			"q": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20Q%20Quebec.mp3',
+			"r": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20R%20Romeo.mp3',
+			"s": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20S%20Sierra.mp3',
+			"t": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20T%20Tango.mp3',
+			"u": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20U%20Uniform.mp3',
+			"v": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20V%20Victor.mp3',
+			"w": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20W%20Whiskey.mp3',
+			"x": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20X%20Xray.mp3',
+			"y": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20Y%20Yankee.mp3',
+			"z": 'http://morsecodealphabet.org/mp3/Morse%20Code%20Alphabet%20Z%20Zulu.mp3',
+			"1": 'http://cgi3.lcwo.net/cgi-bin/cw.mp3?s=20&e=20&f=600&t=1%20%20%20%20%5E',
+			"2": 'http://cgi3.lcwo.net/cgi-bin/cw.mp3?s=20&e=20&f=600&t=2%20%20%20%20%5E',
+			"3": 'http://cgi3.lcwo.net/cgi-bin/cw.mp3?s=20&e=20&f=600&t=3%20%20%20%20%5E',
+			"4": 'http://cgi3.lcwo.net/cgi-bin/cw.mp3?s=20&e=20&f=600&t=4%20%20%20%20%5E',
+			"5": 'http://cgi3.lcwo.net/cgi-bin/cw.mp3?s=20&e=20&f=600&t=5%20%20%20%20%5E',
+			"6": 'http://cgi3.lcwo.net/cgi-bin/cw.mp3?s=20&e=20&f=600&t=6%20%20%20%20%5E',
+			"7": 'http://cgi3.lcwo.net/cgi-bin/cw.mp3?s=20&e=20&f=600&t=7%20%20%20%20%5E',
+			"8": 'http://cgi3.lcwo.net/cgi-bin/cw.mp3?s=20&e=20&f=600&t=8%20%20%20%20%5E',
+			"9": 'http://cgi3.lcwo.net/cgi-bin/cw.mp3?s=20&e=20&f=600&t=9%20%20%20%20%5E',
+			"0": 'http://cgi3.lcwo.net/cgi-bin/cw.mp3?s=20&e=20&f=600&t=0%20%20%20%20%5E',
+			" ": 'http://cgi3.lcwo.net/cgi-bin/cw.mp3?s=20&e=20&f=600&t= %20%20%20%20%5E',
+		};
+    
+    // function to translate user text into morse
+		function trans() {
+			var lowerCaseText = document.getElementById("userText").value.toLowerCase();
+			var userText = lowerCaseText.split("");
+			var output = "";
+			
+			// translate each character into morse and concatenate to string
+			for (x=0; x<userText.length; x++) {
+				output += engToMorse[userText[x]] + "&nbsp&nbsp&nbsp";
+			}
+			
+			// output string to user
+			document.getElementById("translation").innerHTML = output;
+		
+			var soundArray = [];
+			
+			// associate each character with its morse sound and push each sound to array
+			for (y=0; y<userText.length; y++) {
+				soundArray.push(charToSound[userText[y]]);
+			}
+      
+      // function to play morse sounds stored in array
+			(function() {
+				var soundQueue = function(container, sounds) {
+					var index = 1;        
+					var playNext = function() {
+						if(index < sounds.length) {
+							container.src = sounds[index];
+							index += 1;
+						} else {
+							container.removeEventListener('ended', playNext, false);
+						}
+					};
+					container.addEventListener('ended', playNext);
+					container.src = sounds[0];
+				};
+				var container = document.getElementById('container');
+				new soundQueue(container, soundArray);
+			})();
+		}
+    </script>
+  </body>
+</html>
