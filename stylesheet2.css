@@ -1,0 +1,70 @@
+@charset "utf-8";
+/* body style sheet for portfolio home page */
+
+body {
+    margin: 0px;
+    background-color: #f2f2f2;
+    font-family: 'Julius Sans One', sans-serif;
+    color: black;
+    text-align: center;
+} 
+
+.content {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    right: 20px;
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+    background-color: #d8d8d8;
+    text-decoration: none;
+}
+
+.content svg {
+    display: block;
+    margin: auto;
+}
+
+.content p {
+    padding-right: 200px;
+    padding-left: 200px;
+}
+
+button {
+    background-color: #6400cc;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 20px;
+    color: white;
+    font-family: 'Lobster', cursive;
+    font-size: 20px;
+}
+
+.floatingBox {
+    width: 45%;
+    margin: 20px;
+    display: inline-block;
+    float: center;
+}
+
+.floatingBox img {
+    width: 100%;
+    background-color: #d8d8d8;
+    margin-bottom: 0px;
+}
+
+.floatingBox p {
+    font-size: 14px;
+    background-color: white;
+    padding: 25px;
+    margin-top: 0px;
+    text-align: left;
+    line-height: 24px;
+}
+
+.line {
+    height: 1px;
+    border-bottom: 1px solid #e6e6e6;
+    margin: 10px 200px 10px 200px;
+}
