@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Map App</title>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='stylesheet1.css' rel='stylesheet'>
+    <script src="tracking.js"></script>
+    <style type="text/css">
+      html, body { 
+        height: 100%; 
+        margin: 0; 
+        padding: 0; 
+      }
+      #map { 
+        height: 100%; 
+        position: relative;
+      }
+    </style>
+  </head>
+  <body>
+      <div class="header">
+        <ul>
+            <li>Menu
+                <ul>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio.html">
+                        <li>Home</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/dicegame.html">
+                        <li>Dice Game</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/webpage.html">
+                        <li>Web Page</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/morsetranslator.html">
+                        <li>Morse Translator</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio/mapapp.html">
+                        <li>Map App</li>
+                    </a>
+                    <a href="http://phillipsd.net/~hrapinchuk/portfolio.html#contact">
+                        <li>Contact</li>
+                    </a>
+                </ul>
+            </li>
+        </ul>
+        <h6>Heather Rapinchuk</h6>
+    </div>
+    <div id="map"></div>
+    <script src="http://www.phillipsd.net/~dkp/geoip/js/sql.js"></script>
+    <script>
+    
+// function to load file
+function loadFile(path, success) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", path, true); 
+  xhr.responseType = "arraybuffer";
+  xhr.onload = function() {
+    var data = new Uint8Array(xhr.response);
+    var arr = new Array();
+    for(var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+    success(arr.join(""));
+  };
+  xhr.send();
+}; // end loadFile()
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// function to create marker image
+function createMarker(colorCode) {
+	var markerColor = colorCode;
+	var markerImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + markerColor);
+	return markerImage;
+}; // end createMarker()
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// function to map marker
+function mapMarker(marker, ipLat, ipLong, ipAddress, markerImage) {
+  marker = new google.maps.Marker({
+    position: new google.maps.LatLng(ipLat, ipLong),
+    title: ipAddress,
+    map: map,
+    icon: markerImage
+  });
+  return marker;
+}; // end mapMarker()
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+// function to initialize map
+function initMap() {
+
+  // create map object
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 3,
+    center: {lat: 20, lng: -15}
+  });
+  
+  ////////////////////////////////////////////////////////////////////////////////////////
+
+  // call function to load txt file
+  loadFile("http://phillipsd.net/~hrapinchuk/Lab8FailedSsh.txt", function(arr) {
+  
+    // declare variables
+    var allTextLines = arr.split("\n");
+    var marker1;
+    var index1;
+
+    // parse lines of array and use to map markers
+    for (index1 = 0; index1 < allTextLines.length; index1++) {  
+      var parsedLines = allTextLines[index1].split(',');
+      var ipAddress1 = parsedLines[0];
+      var ipLat1 = parseFloat(parsedLines[8]);
+      var ipLong1 = parseFloat(parsedLines[9]);
+      mapMarker(marker1, ipLat1, ipLong1, ipAddress1, createMarker("4747FF")).setMap(map);
+    }
+  });
+  
+  ////////////////////////////////////////////////////////////////////////////////////////
+
+  // call function to load sqlite file
+  loadFile("http://phillipsd.net/~dkp/geoip/sql/access_log.sqlite", function(data) {
+  
+    // declare variables
+    var db = new SQL.Database(data);
+    var marker2;
+    var index2;
+
+    // use data from database to map markers
+    for (index2 = 0; index2 < data.length; index2++) {
+      var rowCounter = String(index2 + 1);
+      var dbRow = db.exec("SELECT IP,Latitude, Longitude FROM access_log WHERE ROWID=" + rowCounter + ";");
+      var dbRowString = JSON.stringify(dbRow);
+      var dbRowSplit = dbRowString.split('"');
+      var ipAddress2 = dbRowSplit[11];
+      var ipLat2 = dbRowSplit[13];
+      var ipLong2 = dbRowSplit[15];
+      mapMarker(marker2, parseFloat(ipLat2), parseFloat(ipLong2), ipAddress2, createMarker("FF9900")).setMap(map);
+    }
+  });
+}; // end initMap()
+
+    </script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaV2-25JbspbWajKes4Vzyi0mdpmNfeWA&callback=initMap">
+    </script>
+  </body>
+</html>
